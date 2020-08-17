@@ -3,7 +3,15 @@ function getSpipJson()
   fetch('https://jamesrezo.github.io/stats-backup/spip.json')
     .then(response => response.json())
     .then(spip => populate("#spip-data", spip))
-    .then(spip => doPie("#spip-pie", spip));
+    .then(spip => doPie("#spip-pie", spip, [
+      "#990000", // red, oldoldstable versions (<=3.0)
+      "#990000",
+      "#990000",
+      "#990000",
+      "#FFE599", // yellow, oldstable version (=3.1)
+      "#B6D7A8", // green, stable version (=3.2)
+      "#D5A6BD", // mauve, dev version (=3.3)
+    ]));
 }
 
 function getPhpJson()
@@ -11,7 +19,23 @@ function getPhpJson()
   fetch('https://jamesrezo.github.io/stats-backup/php.json')
     .then(response => response.json())
     .then(php => populate("#php-data", php))
-    .then(php => doPie("#php-pie", php));
+    .then(php => doPie("#php-pie", php, [
+      "#990000", //red, very old versions  (<5.6)
+      "#990000",
+      //"#990000",
+      "#990000",
+      "#990000",
+      "#990000",
+      "#990000",
+      "#990000",
+      "#FFE599", //yellow, unmaintained versions (>=5.6, <7.2)
+      "#FFE599",
+      "#FFE599",
+      "#B6D7A8", //green, stable or  maintained versions (>=7.2)
+      "#B6D7A8",
+      "#B6D7A8",
+      "#D5A6BD", // mauve, dev version (>=8.0)
+    ]));
 }
 
 function populate(tableElement, data)
@@ -38,13 +62,55 @@ function populate(tableElement, data)
   return data;
 }
 
-function doPie(svg, data)
+function doPie(element, src, colors)
 {
-  var myPie = document.querySelector(svg);
-  var pie = d3.pie(data);
+  // set the dimensions and margins of the graph
+  var width  = 700
+      height = 700
+      margin = 40
 
-  console.log(data);
+  // The radius of the pieplot is half the width or half the height (smallest one). I subtract a bit of margin.
+  var radius = Math.min(width, height) / 2 - margin
 
+  // append the svg object to the div called 'my_dataviz'
+  var svg = d3.select(element)
+    .append("svg")
+      .attr("width", width)
+      .attr("height", height)
+    .append("g")
+      .attr("transform", `translate(${width / 2},${height / 2})`);
+
+  var data = {};
+  for (var i = 0; i < src.length; i++) {
+    data[src[i].version] = src[i].sites;
+  }
+
+  // set the color scale
+  var color = d3.scaleOrdinal()
+    .domain(data)
+    .range(colors)
+
+  // Compute the position of each group on the pie:
+  var pie = d3.pie()
+    .sort(null)
+    .value(function(d) {return d.value; })
+  var data_ready = pie(d3.entries(data))
+
+  // Build the pie chart: Basically, each part of the pie is a path that we build using the arc function.
+  svg
+    .selectAll('whatever')
+    .data(data_ready)
+    .enter()
+    .append('path')
+    .attr('d', d3.arc()
+      .innerRadius(radius/2)
+      .outerRadius(radius)
+    )
+    .attr('fill', function(d){ return(color(d.data.key)) })
+    .attr("stroke", "black")
+    .style("stroke-width", "1px")
+    .style("opacity", 0.7)
+  
   return data;
 }
 
