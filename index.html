@@ -8,6 +8,7 @@
   </head>
   <body>
     <h1>My Stats SPIP</h1>
+
     <table id="spip-data">
       <caption>SPIP</caption>
       <thead>
@@ -16,9 +17,19 @@
           <th>Sites</th>
         </tr>
       </thead>
-      <tbody></tbody>
+      <tbody>
+        <tr>
+          <td colspan="2">Loading...</td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <th>Total</th>
+          <th>0</th>
+        </tr>
+      </tfoot>
     </table>
-    <div id="spip-pie"></div>
+    <svg id="spip-pie"></svg>
 
     <table id="php-data">
       <caption>PHP</caption>
@@ -28,8 +39,18 @@
           <th>Sites</th>
         </tr>
       </thead>
-      <tbody></tbody>
+      <tbody>
+        <tr>
+          <td colspan="2">Loading...</td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <th>Total</th>
+          <th>0</th>
+        </tr>
+      </tfoot>
     </table>
-    <div id="php-pie"></div>
+    <svg id="php-pie"></svg>
   </body>
 </html>
