@@ -9,6 +9,7 @@
   <body>
     <h1>My Stats SPIP</h1>
 
+    <h2>SPIP Versions through time.</h2>
     <div id="observablehq-591855ba"></div>
     <script type="module">
     import {Runtime, Inspector} from "https://cdn.jsdelivr.net/npm/@observablehq/runtime@4/dist/runtime.js";
@@ -17,6 +18,16 @@
     (new Runtime).module(define, name => name === "chart" ? inspect() : undefined);
     </script>
 
+    <h2>PHP Versions through time.</h2>
+    <div id="observablehq-c263068b"></div>
+    <script type="module">
+    import {Runtime, Inspector} from "https://cdn.jsdelivr.net/npm/@observablehq/runtime@4/dist/runtime.js";
+    import define from "https://api.observablehq.com/@jamesrezo/php-exposed-versions-in-spip-statistics.js?v=3";
+    const inspect = Inspector.into("#observablehq-c263068b");
+    (new Runtime).module(define, name => name === "chart" ? inspect() : undefined);
+    </script>
+
+    <h2>Last poll</h2>
     <table id="spip-data">
       <caption>SPIP</caption>
       <thead>
