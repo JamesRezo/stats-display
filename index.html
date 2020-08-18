@@ -78,5 +78,12 @@
       </tfoot>
     </table>
     <div id="php-pie"></div>
+    <div style="width: 800px;" id="observablehq-5b465681"></div>
+    <script type="module">
+    import {Runtime, Inspector} from "https://cdn.jsdelivr.net/npm/@observablehq/runtime@4/dist/runtime.js";
+    import define from "https://api.observablehq.com/@jamesrezo/treemap-of-exposed-php-versions.js?v=3";
+    const inspect = Inspector.into("#observablehq-5b465681");
+    (new Runtime).module(define, name => name === "chart" ? inspect() : undefined);
+    </script>
   </body>
 </html>

@@ -20,10 +20,10 @@ function getPhpJson()
     .then(response => response.json())
     .then(php => populate("#php-data", php))
     .then(php => doPie("#php-pie", php, [
-      "#990000", //red, very old versions  (<5.6)
-      "#990000",
+      "#303030", //grey, very, very, very old versions (<5)
+      "#303030",
       //"#990000", no 5.0 data
-      "#990000",
+      "#990000", //red, very old versions  (<5.6)
       "#990000",
       "#990000",
       "#990000",
