@@ -9,6 +9,14 @@
   <body>
     <h1>My Stats SPIP</h1>
 
+    <div id="observablehq-591855ba"></div>
+    <script type="module">
+    import {Runtime, Inspector} from "https://cdn.jsdelivr.net/npm/@observablehq/runtime@4/dist/runtime.js";
+    import define from "https://api.observablehq.com/@jamesrezo/spip-statistics.js?v=3";
+    const inspect = Inspector.into("#observablehq-591855ba");
+    (new Runtime).module(define, name => name === "chart" ? inspect() : undefined);
+    </script>
+
     <table id="spip-data">
       <caption>SPIP</caption>
       <thead>
