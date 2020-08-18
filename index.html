@@ -49,6 +49,13 @@
       </tfoot>
     </table>
     <div id="spip-pie"></div>
+    <div style="width: 800px;" id="observablehq-8ba4222c"></div>
+    <script type="module">
+    import {Runtime, Inspector} from "https://cdn.jsdelivr.net/npm/@observablehq/runtime@4/dist/runtime.js";
+    import define from "https://api.observablehq.com/@jamesrezo/treemap-of-spip-versions.js?v=3";
+    const inspect = Inspector.into("#observablehq-8ba4222c");
+    (new Runtime).module(define, name => name === "chart" ? inspect() : undefined);
+    </script>
 
     <table id="php-data">
       <caption>PHP</caption>

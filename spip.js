@@ -4,10 +4,10 @@ function getSpipJson()
     .then(response => response.json())
     .then(spip => populate("#spip-data", spip))
     .then(spip => doPie("#spip-pie", spip, [
-      "#990000", // red, oldoldstable versions (<=3.0)
-      "#990000",
-      "#990000",
-      "#990000",
+      "#303030", //greyscale for versions (<3.0)
+      "#505050",
+      "#707070",
+      "#990000", // red, oldoldstable versions (=3.0)
       "#FFE599", // yellow, oldstable version (=3.1)
       "#B6D7A8", // green, stable version (=3.2)
       "#D5A6BD", // mauve, dev version (=3.3)
