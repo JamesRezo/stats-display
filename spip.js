@@ -11,6 +11,7 @@ function getSpipJson()
       "#FFE599", // yellow, oldstable version (=3.1)
       "#B6D7A8", // green, stable version (=3.2)
       "#D5A6BD", // mauve, dev version (=3.3)
+      "#D5A6BD", // mauve, dev version (=4.0)
     ]));
 }
 
@@ -112,6 +113,14 @@ function doPie(element, src, colors)
     .style("opacity", 0.7)
   
   return data;
+}
+
+function getSpipReleases()
+{
+  fetch('https://www.spip.net/releases.json')
+  .then(response => response.json())
+  .then(response => { console.log(response); return response[0].branch; })
+  .then(branch => console.log(branch));
 }
 
 getSpipJson();
